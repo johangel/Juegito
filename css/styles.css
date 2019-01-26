@@ -5,7 +5,13 @@
 }
 
 .controlsFrame{
+  width: 1000px;
   display: grid;
-  grid-template-columns: 400px 400px;
+  grid-template-columns: 50% 50%;
   grid-column-gap: 20px;
+}
+
+.areaGame{
+  border: 1px solid black;
+  background: rgba(0,0,0,0.05);
 }

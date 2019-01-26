@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-   <script src="./js/main.js"></script>
+  <script src="./js/gameConfig.js"></script>
+  <script src="./js/main.js"></script>
 
-      <div class="controlsFrame">
-        <div>
-          <select name="" id="listaPersonajes">
-            <option value="enriquito">enriquito</option>
-            <option value="edgarcito">edgarcito</option>
-            <option value="rosita">rosita</option>
-            <option value="miguelito">miguelito</option>
-          </select>
+  <div class="controlsFrame">
+    <h1>Tiempo transcurrido: <span id="timeFrame">0</span></h1>
+    <div>
+      <select name="" id="listaPersonajes">
+        <option value="enriquito">enriquito</option>
+        <option value="edgarcito">edgarcito</option>
+        <option value="rosita">rosita</option>
+        <option value="miguelito">miguelito</option>
+      </select>
 
-          <button  onclick="seleccionarPersonaje(event)">Cambiar personaje</button>
-        </div>
+      <button onclick="seleccionarPersonaje(event)">Cambiar personaje</button>
+    </div>
 
-        <div class="buttonsPanel">
-          <div class="keyButtons" id="upKey">up</div>
-          <div class="keyButtons" id="downKey">down</div>
-          <div class="keyButtons" id="leftKey">left</div>
-          <div class="keyButtons" id="rightKey">right</div>
-        </div>
-      </div>
+    <div class="buttonsPanel">
+      <div class="keyButtons" id="upKey">up</div>
+      <div class="keyButtons" id="downKey">down</div>
+      <div class="keyButtons" id="leftKey">left</div>
+      <div class="keyButtons" id="rightKey">right</div>
+    </div>
+  </div>
 
 </body>
+
 </html>
