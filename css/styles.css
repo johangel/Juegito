@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5{
+  margin: 0;
+}
 .keyButtons{
   padding: 2px 10px;
   border: 1px solid black;
@@ -9,6 +12,12 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: 20px;
+}
+
+.pressedButon{
+  background: crimson;
+  font-weight: bold;
+  color: white
 }
 
 .areaGame{
