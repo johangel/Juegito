@@ -29,6 +29,8 @@ var areaJuego = {
         score = 0;
         updateGameTime(timeSpend * -1)
         this.clear()
+        move1 = 5
+        move2 = 3
     }
 }
 
