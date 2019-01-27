@@ -10,18 +10,28 @@
 <body>
 
   <script src="./js/gameConfig.js"></script>
+  <script src="./js/keysCatcher.js"></script>
   <script src="./js/main.js"></script>
 
-  <h4>Manzanitas atrapadas:<span id="scoreBoard">0</span></h4>
-  <h4>Tiempo transcurrido: <span id="timeFrame">0</span></h4>
-  <small style="margin-bottom: 10px; display: inline-block;">Cada 10 segs la manzana cambiara de posicion</small>
+  <div class="infoContainer">
+    <div>
+      <h4>Manzanitas atrapadas:<span id="scoreBoard">0</span></h4>
+      <h4>Tiempo transcurrido: <span id="timeFrame">0</span></h4>
+      <small style="margin-bottom: 10px; display: inline-block;">Cada 10 segs la manzana cambiara de posicion</small>
+    </div>
+    <div>
+      <h4>Velicodad 1D: <span id="vel1d">0</span></h4>
+      <h4>Velicodad 2D: <span id="vel2d">0</span></h4>
+    </div>
+  </div>
   <div class="controlsFrame">
 
     <div class="buttonsPanel">
-      <div class="keyButtons" id="upKey">up</div>
-      <div class="keyButtons" id="downKey">down</div>
-      <div class="keyButtons" id="leftKey">left</div>
-      <div class="keyButtons" id="rightKey">right</div>
+      <div class="keyButtons" id="upKey">Arriba</div>
+      <div class="keyButtons" id="downKey">Abajo</div>
+      <div class="keyButtons" id="leftKey">Izquierda</div>
+      <div class="keyButtons" id="rightKey">Derecha</div>
+      <div class="keyButtons" id="stopKey">Detenerse</div>
     </div>
 
     <div>
@@ -41,7 +51,8 @@
 
   <div class="infoFrame">
     Perosonaje: <span id="personajeInfo"></span> <br>
-    Manzana: <span id="manzanaInfo"></span> 
+    Manzana: <span id="manzanaInfo"></span> <br>
+    Boost: <span id="boostInfo"></span> 
   </div>
 
 </body>

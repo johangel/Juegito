@@ -2,6 +2,8 @@ const frameRate = 25
 const frameRateSecMult = 40
 var timeSpend = 0;
 var score = 0;
+Comida = []
+Boost = []
 
 var areaJuego = {
     canvas: document.createElement("canvas"),
@@ -15,7 +17,7 @@ var areaJuego = {
         this.interval = setInterval(x => {
             updateGameArea()
         }, frameRate);
-
+        showMoveInfo()
     },
     clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -39,6 +41,8 @@ function component(width, height, cabeza, x, y, type) {
     this.cabeza.src = 'caritas/' + cabeza + '.png';
     this.x = x;
     this.y = y;
+    this.moveX = 0;
+    this.moveY = 0;
     this.text = "jej";
     this.primeraCarga = 0;
     this.update = function (x, y) {
@@ -49,7 +53,7 @@ function component(width, height, cabeza, x, y, type) {
 
             if (this.primeraCarga == 0) {
                 this.cabeza.onload = function () {
-                    ctx.drawImage(Personaje.cabeza, x, y, 100, 100);
+                    ctx.drawImage(Personaje.cabeza, this.x, this.y, 100, 100);
                 }
                 this.primeraCarga = 1;
             }
@@ -63,17 +67,31 @@ function component(width, height, cabeza, x, y, type) {
             ctx.drawImage(imagenDeCuerpito, cuerpox, cuerpoy, 70, 70);
         }
         if (this.type == "comida") {
-            ctx.drawImage(this.cabeza, x, y, 50, 50);
+            ctx.drawImage(this.cabeza, this.x, this.y, 50, 50);
+        }
+
+        if (this.type == "boost") {
+            ctx.drawImage(this.cabeza, this.x, this.y, 50, 50);
         }
     }
     this.checkCollision = function (objeto) {
         // console.log('esto es una manzana: ', objeto)
         if ((-100 < (Personaje.x - objeto.x)) &&
-            ( 100 > (Personaje.x - objeto.x)) &&
-            ( 100 > (Personaje.y - objeto.y)) &&
-            (-100 < (Personaje.y - objeto.y))){
-            createNewApple()
-            updateScore(1)
+            (50 > (Personaje.x - objeto.x)) &&
+            (50 > (Personaje.y - objeto.y)) &&
+            (-100 < (Personaje.y - objeto.y))) {
+                if(objeto.type == 'comida'){
+                    createNewApple()
+                    updateScore(1)
+                }
+
+                if(objeto.type == 'boost'){
+                    move1 = move1 + 2
+                    move2 = move2 + 1
+                    createBoost()
+                    showMoveInfo()
+
+                }
         }
     }
 }
@@ -83,24 +101,48 @@ function updateGameTime(value) {
     document.getElementById('timeFrame').innerHTML = timeSpend + ' segs';
 }
 
-function updateScore(value){
+function updateScore(value) {
     score = score + value
     document.getElementById('scoreBoard').innerHTML = score;
 
 }
 
-function drawInfo(objeto){
-    if(objeto.type == 'comida'){
+function drawInfo(objeto) {
+    if (objeto.type == 'comida') {
         document.getElementById('manzanaInfo').innerHTML = JSON.stringify(objeto)
     }
-    if(objeto.type == 'personaje'){
+    if (objeto.type == 'personaje') {
         document.getElementById('personajeInfo').innerHTML = JSON.stringify(objeto)
+    }
+    if (objeto.type == 'boost') {
+        document.getElementById('boostInfo').innerHTML = JSON.stringify(objeto)
     }
 }
 
-function createNewApple(){
+function createNewApple() {
+    do {
         x = areaJuego.canvas.width * Math.random();
-       y = areaJuego.canvas.height * Math.random();
-       Comida[0] = new component(20, 20, 'manzana', x, y, 'comida');
-       drawInfo(Comida[0])
+    } while ((x - areaJuego.canvas.width) > -50 && (x - areaJuego.canvas.width) < 50)
+
+    do {
+        y = areaJuego.canvas.height * Math.random();
+    } while ((y - areaJuego.canvas.height) > -50 && (y - areaJuego.canvas.height) < 50)
+
+    Comida[0] = new component(20, 20, 'manzana', x, y, 'comida');
+    drawInfo(Comida[0])
+
+}
+
+function createBoost() {
+    do {
+        x = areaJuego.canvas.width * Math.random();
+    } while ((x - areaJuego.canvas.width) > -50 && (x - areaJuego.canvas.width) < 50)
+
+    do {
+        y = areaJuego.canvas.height * Math.random();
+    } while ((y - areaJuego.canvas.height) > -50 && (y - areaJuego.canvas.height) < 50)
+
+    Boost[0] = new component(20, 20, 'cloro', x, y, 'boost');
+
+       drawInfo(Boost[0])
 }
