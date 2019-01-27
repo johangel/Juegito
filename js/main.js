@@ -1,6 +1,6 @@
 var Score;
 var imagenDeCuerpito = new Image();
-imagenDeCuerpito.src = "caritas/cuerpito.png";
+imagenDeCuerpito.src = "imgs/caritas/cuerpito.png";
 
 function restartGame() {
     areaJuego.reset()
@@ -10,15 +10,16 @@ function updateGameArea() {
     areaJuego.clear();
     Personaje.update(Personaje.x + Personaje.moveX, Personaje.y + Personaje.moveY);
     areaJuego.framenro = areaJuego.framenro + 1;
-    if (areaJuego.framenro === 2 || intervalo(frameRateSecMult * 10)) {
+    if (areaJuego.framenro === 2) {
         createNewApple()
         createBoost()
-        
+        // createMoob()
     }
     if (areaJuego.framenro % frameRateSecMult == 0) {
         updateGameTime(1)
     }
     Boost[0].update(Boost[0].x, Boost[0].y)
+    // Comida[0].moveToPlayer(2,2)
     Comida[0].update(Comida[0].x, Comida[0].y)
     Personaje.checkCollision(Comida[0])
     Personaje.checkCollision(Boost[0])
@@ -34,8 +35,9 @@ function seleccionarPersonaje(e) {
     if (timeSpend > 0) {
         areaJuego.reset()
     }
-    carita = String(document.getElementById("listaPersonajes").value);
-    Personaje = new component("200px", "400px", carita, 100, 100, "personaje");
+    options = String(document.getElementById("listaPersonajes").value).split(',');
+    console.log(options)
+    Personaje = new component("200px", "400px", options[0], 100, 100, "personaje", options[1]);
     drawInfo(Personaje)
     areaJuego.start();
     Personaje.update(Personaje.x, Personaje.y);

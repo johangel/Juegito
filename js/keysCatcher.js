@@ -78,6 +78,7 @@ function evaluateMovement(e){
 }
 
 function showMoveInfo(){
-    document.getElementById('vel1d').innerHTML = move1
-    document.getElementById('vel2d').innerHTML = move2
+    document.getElementById('vel1d').innerHTML = Math.round (10 * move1) / 10;
+    document.getElementById('vel2d').innerHTML = Math.round (10 * move2) / 10;
+    document.getElementById('boostAmount').innerHTML = totalBoost
 }

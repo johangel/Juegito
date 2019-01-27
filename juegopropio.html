@@ -10,18 +10,20 @@
 <body>
 
   <script src="./js/gameConfig.js"></script>
+  <script src="./js/componet.js"></script>
   <script src="./js/keysCatcher.js"></script>
   <script src="./js/main.js"></script>
 
   <div class="infoContainer">
-    <div>
+    <div style="margin-bottom: 10px">
       <h4>Manzanitas atrapadas:<span id="scoreBoard">0</span></h4>
       <h4>Tiempo transcurrido: <span id="timeFrame">0</span></h4>
-      <small style="margin-bottom: 10px; display: inline-block;">Cada 10 segs la manzana cambiara de posicion</small>
+      <!-- <small ; display: inline-block;">Cada 10 segs la manzana cambiara de posicion</small> -->
     </div>
     <div>
       <h4>Velicodad 1D: <span id="vel1d">0</span></h4>
       <h4>Velicodad 2D: <span id="vel2d">0</span></h4>
+      <h4>total boost recogidos: <span id="boostAmount">0</span></h4>
     </div>
   </div>
   <div class="controlsFrame">
@@ -36,10 +38,10 @@
 
     <div>
       <select name="" id="listaPersonajes">
-        <option value="enriquito">enriquito</option>
-        <option value="edgarcito">edgarcito</option>
-        <option value="rosita">rosita</option>
-        <option value="miguelito">miguelito</option>
+        <option value="enriquito,cloro">enriquito</option>
+        <option value="edgarcito,cloro">edgarcito</option>
+        <option value="rosita,polloArturos">rosita</option>
+        <option value="miguelito,consolador">miguelito</option>
       </select>
 
       <button onclick="seleccionarPersonaje(event)">Seleccionar Personaje</button>
