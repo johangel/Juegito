@@ -1,3 +1,7 @@
+Comida = []
+Boost = []
+Moobs = []
+
 function component(width, height, cabeza, x, y, type, boostType) {
     this.type = type;
     this.height = height;
@@ -8,8 +12,8 @@ function component(width, height, cabeza, x, y, type, boostType) {
     this.cabeza.src = 'imgs/caritas/' + cabeza + '.png';
     this.x = x;
     this.y = y;
-    this.moveX = 0;
-    this.moveY = 0;
+    this.moveX = 4;
+    this.moveY = 4;
     this.text = "jej";
     this.primeraCarga = 0;
     this.update = function (x, y) {
@@ -33,10 +37,10 @@ function component(width, height, cabeza, x, y, type, boostType) {
             var cuerpoy = y + 95;
             ctx.drawImage(imagenDeCuerpito, cuerpox, cuerpoy, 70, 70);
         }
+
         if (this.type == "comida" || this.type == "boost" || this.type == "moob" ) {
             ctx.drawImage(this.cabeza, this.x, this.y, 50, 50);
         }
-
     }
     this.checkCollision = function (objeto) {
         if ((-100 < (Personaje.x - objeto.x)) &&
@@ -56,28 +60,39 @@ function component(width, height, cabeza, x, y, type, boostType) {
                     createBoost()
                     showMoveInfo()
                 }
+
+                if(objeto.type == 'moob'){
+                    areaJuego.finish();
+                    alert('te atrapo el pirata y no fue por el oro ni por la plata')
+                }
         }
     }
 
-    this.moveToPlayer = function(xSpeed, Yspeed){
-        if(this.x - Personaje.x < 15){
-            if(this.x - Personaje.x > -15){
+    this.upgradeSpeed = function (speedX, speedY){
+        this.moveX = this.moveX + speedX
+        this.moveY = this.moveY + speedY
+        console.log('se entro')
+    }
+
+    this.moveToPlayer = function(){
+        if(this.x - Personaje.x < 30){
+            if(this.x - Personaje.x > -30){
                 
 
-                if(this.y - Personaje.y< 15){
+                if(this.y - Personaje.y< 30){
 
-                    if(this.y - Personaje.y > -15){
+                    if(this.y - Personaje.y > -30){
                     }
-                    this.y = this.y + Yspeed
+                    this.y = this.y + this.moveY
                 }else{
-                    this.y = this.y-Yspeed
+                    this.y = this.y-this.moveY
                 }
 
             }else{
-                this.x = this.x + xSpeed;
+                this.x = this.x + this.moveX;
             }
         }else{
-            this.x = this.x - xSpeed
+            this.x = this.x - this.moveX
         }
     }
 }
@@ -108,4 +123,23 @@ function createBoost() {
     Boost[0] = new component(20, 20, Personaje.boostType, x, y, 'boost');
 
        drawInfo(Boost[0])
+}
+
+function createMoob(){
+    Moobs[0] = new component(50, 50, 'moob', 900, 10, 'moob');
+}
+
+function drawInfo(objeto) {
+    if (objeto.type == 'comida') {
+        document.getElementById('manzanaInfo').innerHTML = JSON.stringify(objeto)
+    }
+    if (objeto.type == 'personaje') {
+        document.getElementById('personajeInfo').innerHTML = JSON.stringify(objeto)
+    }
+    if (objeto.type == 'boost') {
+        document.getElementById('boostInfo').innerHTML = JSON.stringify(objeto)
+    }
+    if (objeto.type == 'moob') {
+        document.getElementById('moobInfo').innerHTML = JSON.stringify(objeto)
+    }
 }

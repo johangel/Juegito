@@ -13,17 +13,28 @@ function updateGameArea() {
     if (areaJuego.framenro === 2) {
         createNewApple()
         createBoost()
-        // createMoob()
+        createMoob()
     }
     if (areaJuego.framenro % frameRateSecMult == 0) {
         updateGameTime(1)
     }
+
+    if(intervalo(frameRateSecMult  * 10)){
+        Moobs[0].upgradeSpeed(1,1)
+        console.log('jaja')
+        document.getElementById('MoobSpeed').innerHTML = Moobs[0].moveX
+    }
+    
+    
+    Moobs[0].moveToPlayer()
     Boost[0].update(Boost[0].x, Boost[0].y)
-    // Comida[0].moveToPlayer(2,2)
     Comida[0].update(Comida[0].x, Comida[0].y)
+    Moobs[0].update(Moobs[0].x, Moobs[0].y)
     Personaje.checkCollision(Comida[0])
     Personaje.checkCollision(Boost[0])
+    Personaje.checkCollision(Moobs[0])
     drawInfo(Personaje)
+    drawInfo(Moobs[0])
 }
 
 function checkKey(e) {

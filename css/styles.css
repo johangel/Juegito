@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5{
 }
 
 .infoContainer{
+  width: 1000px;
   display: grid;
-  grid-template-columns: 400px 400px
-}
+  grid-template-columns: 1fr 1fr 1fr;
+;
